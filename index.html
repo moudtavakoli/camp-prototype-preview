@@ -2347,11 +2347,11 @@ function start(){
    const km=Number(row.dataset.km),target=Number(row.dataset.target);
    const hasTarget=Number.isFinite(target)&amp;&amp;target&gt;0;
    const overload=known&amp;&amp;hasTarget&amp;&amp;km&gt;=target*1.2;
-   row.classList.toggle(&#x27;volume-overload&#x27;,mode===&#x27;km&#x27;&amp;&amp;overload);
-   row.querySelector(&#x27;[data-volume-danger]&#x27;).hidden=mode!==&#x27;km&#x27;||!overload;
+   row.classList.toggle(&#x27;volume-overload&#x27;,view===&#x27;coach&#x27;&amp;&amp;mode===&#x27;km&#x27;&amp;&amp;overload);
+   row.querySelector(&#x27;[data-volume-danger]&#x27;).hidden=view!==&#x27;coach&#x27;||mode!==&#x27;km&#x27;||!overload;
 
    const label=hasTarget?(known?fa(km)+&#x27; کیلومتر از &#x27;+fa(target)+&#x27; کیلومتر&#x27;:&#x27;هدف: &#x27;+fa(target)+&#x27; کیلومتر&#x27;):(editable?&#x27;تعیین حجم هفتگی&#x27;:(known?fa(km)+&#x27; کیلومتر تمرین&#x27;:&#x27;هدف حجم تعیین نشده&#x27;));
-   row.querySelector(&#x27;[data-volume-setup]&#x27;).hidden=hasTarget;
+   row.querySelector(&#x27;[data-volume-setup]&#x27;).hidden=!editable||hasTarget;
    const setupHint=row.querySelector(&#x27;[data-volume-setup-hint]&#x27;);
    setupHint.hidden=hasTarget||(!editable&amp;&amp;row.dataset.member!==&#x27;s&#x27;);
    setupHint.textContent=editable?&#x27;هدف حجم هفتگی این ورزشکار را تعیین کن.&#x27;:&#x27;از مربی‌ات بخواه هدف حجم هفتگی‌ات را تعیین کند.&#x27;;
